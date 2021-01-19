@@ -1,5 +1,5 @@
 Video Recommender System
 
 Data  
-algorithms  
-results  
+Algorithms  
+Results  
