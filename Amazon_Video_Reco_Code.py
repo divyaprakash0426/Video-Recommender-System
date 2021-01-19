@@ -13,6 +13,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from datetime import datetime
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics.pairwise import pairwise_distances
 from sklearn.metrics import *
 from sklearn.preprocessing import *
 from sklearn.ensemble import *
@@ -52,7 +53,7 @@ def cleaning_data(initial_data,features,m):
 
 def data():
     print('loading data...')
-    initial_data = initial_data_from_dict('D:/Masters/Sem_2/Data_Mining/project/reviews_Amazon_Instant_Video_5.json.gz')
+    initial_data = initial_data_from_dict('C:/Users/divya/New folder/reviews_Amazon_Instant_Video_5.json.gz')
     initial_data['reviewTime'] =initial_data['reviewTime'].apply(lambda x: datetime.strptime(x, '%m %d, %Y'))
     initial_data['datetime'] = pd.to_datetime(initial_data.reviewTime, unit='s')
     raw_data = cleaning_data(initial_data, ['asin', 'reviewerID'], 2)
