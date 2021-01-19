@@ -73,6 +73,7 @@ def recommendation(final_table, userid,n,rawId= False):
         print('the top{} recommanded products for user {} is {}'.format(n,userid,top_N))
         if rawId == True:
             print('the real ID is {}'.format(videoid2videoid[top_N]))
+            
     return top_N
 
 def cf(uv_table = uv_table,distance = 'cosine'):
@@ -80,6 +81,7 @@ def cf(uv_table = uv_table,distance = 'cosine'):
     item_similarity = pairwise_distances(uv_table.T, metric=distance)
     sc = MinMaxScaler(feature_range=(1,5))
     a = sc.fit_transform(np.dot(user_similarity,uv_table).dot(item_similarity))
+
     return a
 
 def caculate_mse(x):
@@ -96,6 +98,8 @@ def caculate_mse(x):
         u,p,s = line
         MSE3.append(s)
         MSE4.append(x[int(u),int(p)])
+
     MSE_out_sample = mean_squared_error(MSE3,MSE4)
     print('the in sample MSE = {} \nthe out sample MSE = {}'.format(MSE_in_sample,MSE_out_sample))
+
     return MSE_in_sample,MSE_out_sample

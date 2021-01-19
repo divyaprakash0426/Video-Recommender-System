@@ -12,4 +12,5 @@ def svdrecommendation(uv_table = uv_table, factors= 150):
     pred_mat=dot(dot(U,sigma),Vt) + user_ratings_mean
     sc=MinMaxScaler(feature_range = (1,5))
     pred_mat = sc.fit_transform(pred_mat)
+    
     return pred_mat

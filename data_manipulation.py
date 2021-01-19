@@ -10,8 +10,6 @@ from datetime import datetime
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import accuracy_score
 from sklearn.metrics.pairwise import pairwise_distances
-#from sklearn.metrics import *
-#from sklearn.preprocessing import *
 from sklearn.ensemble import ExtraTreesRegressor
 from numpy import *
 from scipy.sparse.linalg import svds
@@ -54,19 +52,24 @@ def data():
     initial_data = initial_data_from_dict('C:/Users/divya/New folder/reviews_Amazon_Instant_Video_5.json.gz')
     initial_data['reviewTime'] =initial_data['reviewTime'].apply(lambda x: datetime.strptime(x, '%m %d, %Y'))
     initial_data['datetime'] = pd.to_datetime(initial_data.reviewTime, unit='s')
+
     raw_data = cleaning_data(initial_data, ['asin', 'reviewerID'], 2)
     raw_data['userid'] = pd.factorize(raw_data['reviewerID'])[0]
     raw_data['videoid'] = pd.factorize(raw_data['asin'])[0]
+
     sc = MinMaxScaler()
+
     raw_data['time']=sc.fit_transform(raw_data['reviewTime'].values.reshape(-1,1))
     raw_data['numberuser']=sc.fit_transform(raw_data['no_of_users'].values.reshape(-1,1))
     raw_data['numberprod']=sc.fit_transform(raw_data['no_of_products'].values.reshape(-1,1))
     raw_data['reviewTime'] =  pd.to_datetime(raw_data['reviewTime'], format='%Y-%b-%d:%H:%M:%S.%f')    
     raw_data['weekend']=raw_data['reviewTime'].dt.dayofweek>=5
     raw_data['weekend']=raw_data['weekend'].astype(int)
+
     First = raw_data.loc[:,['userid','videoid']]
     Second = raw_data.loc[:,['userid','videoid','time']]
     Third = raw_data.loc[:,['userid','videoid','time','numberuser','numberprod']]
+    
     y = raw_data.overall
 
     # train_test split
