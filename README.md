@@ -21,3 +21,14 @@ Amazon Instant Video dataset available at: http://jmcauley.ucsd.edu/data/amazon/
 | ExtraTrees Regressor | UserId, VideoID, time, weekend_review | 0.006 | 1.306 | 0.845 | 0.7406 | 0.789 |
 | XGB Regressor |UserId, VideoID, time, no. users, no. videos | 1.109 | 1.242 | 0.8355 | 0.8511 | 0.843 |
 | Bagging(MF and PMF) | UserId, VideoID | 0.0019 | 0.0016 | 1.0 | 0.8612 | 0.925 |
+
+# To run the program
+1. Download data from [data](https://github.com/divyaprakash0426/Video-Recommender-System/tree/master/data)
+2. Modify the following command in data_manipulation.py file [data_manipulation.py](https://github.com/divyaprakash0426/Video-Recommender-System/blob/master/code/data_manipulation.py)
+```
+def data():
+    print('loading data...')
+    initial_data = initial_data_from_dict('paste data file location here')
+
+```
+3. Run main.py file [main.py](https://github.com/divyaprakash0426/Video-Recommender-System/blob/master/code/main.py)
